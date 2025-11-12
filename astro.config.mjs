@@ -3,7 +3,7 @@ import react from '@astrojs/react';
 
 export default defineConfig({
   site: 'https://arnaunin.github.io/',
-  base: './',
+  base: '/lista_tareas_astro',
   outDir: 'dist',
   integrations: [react()],
 });
