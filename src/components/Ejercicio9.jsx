@@ -34,7 +34,7 @@ const Ejercicio9 = () => {
   }
 
   return (
-    <div>
+    <div className='gestorTareas'>
       <h3>Lista de Tareas con LocalStorage</h3>
       <h5>Introduce una tarea:</h5>
       <form onSubmit={agregarTarea}>

@@ -1,17 +1,19 @@
 ---
+import "../styles/index.css"
 const { title } = Astro.props;
 ---
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <title>{title || 'Mi Proyecto Astro'}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <header>
       <h1>Mi Proyecto Astro</h1>
     </header>
 
-    <main>
+    <main  class="container">
       <slot />
     </main>
 
