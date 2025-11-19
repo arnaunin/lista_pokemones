@@ -1,4 +1,3 @@
-import { setErrorMap } from 'astro:schema'
 import { useState, useEffect } from 'react'
 
 const usePokemon = (url) => {
@@ -8,12 +7,19 @@ const usePokemon = (url) => {
 
 
     useEffect(() => {
-        setLoading(true)
-        fetch(url, { cache: 'no-store' })
-            .then((response) => response.json())
-            .then((pokemones) => setPokemones(pokemones))
-            .catch((error) => setError(error))
-            .finally(() => setLoading(false))
+        async function load() {
+            try {
+                const res = await fetch(url)
+                if (!res.ok) throw new Error ("Error al cargar los pokemones")
+                const data = await res.json()
+                setPokemones(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        load()
     }, [url])
 
     return { pokemones, loading, error }
