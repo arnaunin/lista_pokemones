@@ -13,7 +13,6 @@ const usePokedex = () => {
     localStorage.setItem('pokedex', JSON.stringify(pokedex))
   }, [pokedex])
 
-
   const addPokemon = (nombre) => {
     setPokedex([...pokedex, { nombre: nombre, capturado: false }])
   }

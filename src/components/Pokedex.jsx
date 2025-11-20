@@ -4,7 +4,7 @@ import usePokedex from '../hooks/usePokedex';
 
 const PokemonList = () => {
 
-  const { pokemones: firstGen, loading } = usePokemon("http://localhost:3000/pokemon")
+  const { pokemones: firstGen, loading } = usePokemon("https://kanto-api.vercel.app/pokemon")
   
   const {
     pokedex,

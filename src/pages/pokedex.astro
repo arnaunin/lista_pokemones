@@ -1,0 +1,8 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PokedexReact from '../components/Pokedex.jsx';
+---
+
+<Layout title="Pokedex">
+  <PokedexReact client:only="react"/>
+</Layout>
