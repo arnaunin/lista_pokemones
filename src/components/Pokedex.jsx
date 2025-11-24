@@ -8,9 +8,12 @@ const PokemonList = () => {
   
   const {
     pokedex,
+    isLoading,
+    error,
     addPokemon,
-    addManyPokemons,
-    toggleCapturado
+    toggleCapturado,
+    deletePokemon,
+    addManyPokemons
   } = usePokedex()
 
   const [texto, setTexto] = useState('')
@@ -18,7 +21,7 @@ const PokemonList = () => {
   const hadleAddPokemon = (e) => {
     e.preventDefault()
     if (!texto.trim()) return
-    addPokemon(texto.toLocaleLowerCase())
+    if (!isLoading) addPokemon(texto.toLocaleLowerCase())
     setTexto("")
   }
 
@@ -39,13 +42,13 @@ const PokemonList = () => {
         <button type='submit'>Agregar pokemon a la pokedex</button>
       </form>
       <ul className='listaSinPuntos'>
-        {pokedex.map((pokemon, index) => {
+        {pokedex.map((pokemon) => {
           return (
-            <li key={index} >
+            <li key={pokemon.id} >
               <input
                 type="checkbox"
                 checked={pokemon.capturado}
-                onChange={() => toggleCapturado(index)}
+                onChange={() => toggleCapturado(pokemon.id)}
               />
               {pokemon.nombre}
             </li>
