@@ -10,23 +10,22 @@ const PokemonList = () => {
     pokedex,
     addPokemon,
     addManyPokemons,
-    toggleCapturado,
-    clearCaptured
+    toggleCapturado
   } = usePokedex()
 
   const [texto, setTexto] = useState('')
 
   const hadleAddPokemon = (e) => {
     e.preventDefault()
-    if (!texto.trim()) return;
-    addPokemon(texto);
-    setTexto("");
+    if (!texto.trim()) return
+    addPokemon(texto.toLocaleLowerCase())
+    setTexto("")
   }
 
   const handleAddFirstGen = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!loading) addManyPokemons(firstGen);
-  };
+  }
 
   return (
     <div className='gestorPokemones'>
@@ -52,7 +51,6 @@ const PokemonList = () => {
             </li>
           )})}
       </ul>
-      <button onClick={clearCaptured}>Limpiar pokemones capturados</button>
     </div>
   )
 }

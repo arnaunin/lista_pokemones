@@ -9,9 +9,20 @@ const usePokedex = () => {
     return []
   })
 
+  const [captured, setCaptured] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return JSON.parse(localStorage.getItem('captured')) || []
+    }
+    return []
+  })
+
   useEffect(() => {
     localStorage.setItem('pokedex', JSON.stringify(pokedex))
   }, [pokedex])
+
+  useEffect(() => {
+    localStorage.setItem('captured', JSON.stringify(captured))
+  }, [captured])
 
   const addPokemon = (nombre) => {
     setPokedex([...pokedex, { nombre: nombre, capturado: false }])
@@ -27,18 +38,12 @@ const usePokedex = () => {
     ));
   }
 
-  const clearCaptured = () => {
-    setPokedex(pokedex.filter(p => !p.capturado))
-  }
-
   return {
     pokedex,
     addPokemon,
     addManyPokemons,
     toggleCapturado,
-    clearCaptured
   }
-
 }
 
 export default usePokedex
