@@ -1,5 +1,4 @@
 const BASE_POKEDEX_URL = "https://kanto-api.vercel.app/pokedex"
-const BASE_POKEMON_URL = "https://kanto-api.vercel.app/pokemon"
 
 export const getPokedex = async () => {
     try {
@@ -65,33 +64,3 @@ export const removePokemon = async (id) => {
         throw error
     }
 }
-
-/*
-export const createManyPokemons = async (nombres) => {
-    try {
-        const res = await fetch(`${BASE_POKEMON_URL}/bulk`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nombres })
-        })
-        if (!res.ok) throw new Error("Failed bulk create")
-        return await res.json()
-    } catch (error) {
-        console.log("API ERROR createManyPokemons: ", error)
-        throw error
-    }
-}
-
-export const removeAllPokemon = async () => {
-    try {
-        const res = await fetch(`${BASE_POKEDEX_URL}/clear`, {
-            method: "DELETE",
-        })
-        if (!res.ok) throw new Error("Error removing all pokemon")
-        return await res.json()
-    } catch (error) {
-        console.log("API ERROR removeAllPokemon:", error)
-        throw error
-    }
-}
-*/

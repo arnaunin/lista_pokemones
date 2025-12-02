@@ -44,18 +44,6 @@ const usePokedex = () => {
     await refreshPokedex()
   }
 
-  /*
-  const addManyPokemons = async (nombres) => {
-    await createManyPokemons(nombres)
-    await refreshPokedex()
-  }
-
-  const deleteAllPokemon = async () => {
-    await removeAllPokemon()
-    await refreshPokedex()
-  }
-  */
-
   return {
     pokedex,
     isLoading,

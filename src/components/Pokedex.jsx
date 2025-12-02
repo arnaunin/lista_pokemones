@@ -1,10 +1,8 @@
 import { useState } from 'react'
-/*import usePokemon from '../hooks/usePokemon'*/
 import usePokedex from '../hooks/usePokedex';
+import Buscador from './Buscador';
 
 const PokemonList = () => {
-
-  /*const { pokemones: firstGen, loading } = usePokemon("https://kanto-api.vercel.app/pokemon")*/
   
   const {
     pokedex,
@@ -13,7 +11,15 @@ const PokemonList = () => {
     toggleCapturado,
   } = usePokedex()
 
+  console.log(pokedex)
+
+  // Estado para controlar los pokemones que se introducen manualmente
   const [texto, setTexto] = useState('')
+
+  // Estado para el buscador de pokemones
+  const [text, setText] = useState('')
+
+  const pokedexFiltrada = pokedex.filter((pokemon) => pokemon.nombre.toLowerCase().includes(text.toLowerCase().trim()))
 
   const handleAddPokemon = (e) => {
     e.preventDefault()
@@ -22,31 +28,17 @@ const PokemonList = () => {
     setTexto("")
   }
 
-  /*
-  const handleAddFirstGen = (e) => {
-    e.preventDefault()
-    if (!loading) addManyPokemons(firstGen);
-  }
-  */
-
   return (
     <div className='gestorPokemones flex flex-col items-center gap-8'>
       <h3 className='text-3xl font-bold text-center mt-4 mb-2 text-gray-700'>Lista de Pokemones</h3>
-      {/*
-      <form onSubmit={handleAddFirstGen}>
-        <button type='submit'>Agregar primera generación</button>
-      </form>
-      */}
+      <Buscador onSearch={setText}/>
       <h5 className='text-2xl font-bold text-center mt-4 mb-2 text-gray-700'>Introduce un Pokemon:</h5>
       <form onSubmit={handleAddPokemon} className='pokemonesForm flex gap-2.5 flex-wrap items-center justify-center'>
-        <input className='border border-gray-400 rounded-lg px-3 py-1 focus:ring-2 focus:ring-blue-400 outline-none' type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
+        <input className='border border-gray-400 rounded-lg px-3 py-1 focus:ring-2 focus:ring-blue-400 outline-none' type="text" value={texto} placeholder='Agrega un Pokémon...' onChange={(e) => setTexto(e.target.value)}/>
         <button type='submit' className='px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-bold shadow-md transition'>Agregar pokemon a la pokedex</button>
       </form>
-      {/*
-      <button className='deleteAllButton' onClick={() => deleteAllPokemon()}>Vaciar Pokedex</button>
-      */}
       <ul className='listaSinPuntos listaPokemon grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
-        {pokedex.map((pokemon) => {
+        {pokedexFiltrada.map((pokemon) => {
           return (
             <li key={pokemon.id}
               onClick={() => toggleCapturado(pokemon.id)}
