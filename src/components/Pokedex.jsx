@@ -56,7 +56,7 @@ const PokemonList = () => {
 
       {!isLoading && pokedexFiltrada.length === 0 ? 
         (<p className="text-center text-xl text-red-600 mt-8 font-semibold">No se ha encontrado ningún Pokémon que coincida con la búsqueda.</p>) :
-        (<ul className='listaSinPuntos listaPokemon grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
+        (<ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
           {pokedexFiltrada.map((pokemon) => (
               <li
                 key={pokemon.id}
