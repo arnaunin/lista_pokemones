@@ -7,16 +7,16 @@ const FirstGen = () => {
   if (error) return <p className="text-center mt-8 text-red-500">Error al cargar imágenes</p>;
 
   return (
-    <div className="px-4 md:px-8 lg:px-16 py-8">
+    <div className="px-4 md:px-8 lg:px-16 py-8 flex flex-col items-center">
       <h3 className='text-3xl md:text-4xl font-bold text-center mb-8 text-gray-700'>
         Pokemones Primera Generación
       </h3>
 
-      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      <ul className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
         {images.map((pokemon) => (
           <li
             key={pokemon.id}
-            className="bg-white shadow-md rounded-2xl p-4 flex flex-col items-center transition-transform transform hover:scale-105 hover:shadow-xl"
+            className="bg-white cursor-pointer shadow-md rounded-2xl p-4 flex flex-col items-center transition-transform transform hover:scale-105 hover:shadow-xl"
           >
             <img
               src={pokemon.image_url}

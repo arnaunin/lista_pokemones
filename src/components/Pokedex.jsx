@@ -23,7 +23,7 @@ const PokemonList = () => {
   }
 
   return (
-    <div className='gestorPokemones flex flex-col items-center gap-8'>
+    <div className='flex flex-col items-center gap-8'>
       <h3 className='text-3xl font-bold text-center mt-4 mb-2 text-gray-700'>
         Lista de Pokemones
       </h3>
@@ -54,36 +54,38 @@ const PokemonList = () => {
         </button>
       </form>
 
-      {!isLoading && pokedexFiltrada.length === 0 ? 
-        (<p className="text-center text-xl text-red-600 mt-8 font-semibold">No se ha encontrado ningún Pokémon que coincida con la búsqueda.</p>) :
-        (<ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
-          {pokedexFiltrada.map((pokemon) => (
-              <li
-                key={pokemon.id}
-                onClick={() => toggleCapturado(pokemon.id)}
-                className={`
-                  cursor-pointer shadow-md rounded-2xl p-4 flex flex-col items-center
-                  transition-transform transform hover:scale-105 hover:shadow-xl
-                  ${
-                    pokemon.capturado
-                      ? 'bg-green-300 hover:bg-green-400'
-                      : 'bg-white hover:bg-gray-100'
-                  }
-                `}
-              >
-                <img
-                  src={pokemon.image_url}
-                  alt={pokemon.nombre}
-                  className='w-24 h-24 md:w-32 md:h-32 object-contain mb-2'
-                />
+      <div className=''>
+        {!isLoading && pokedexFiltrada.length === 0 ? 
+          (<p className="text-center text-xl text-red-600 mt-8 font-semibold">No se ha encontrado ningún Pokémon que coincida con la búsqueda.</p>) :
+          (<ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
+            {pokedexFiltrada.map((pokemon) => (
+                <li
+                  key={pokemon.id}
+                  onClick={() => toggleCapturado(pokemon.id)}
+                  className={`
+                    cursor-pointer shadow-md rounded-2xl p-4 flex flex-col items-center
+                    transition-transform transform hover:scale-105 hover:shadow-xl
+                    ${
+                      pokemon.capturado
+                        ? 'bg-green-300 hover:bg-green-400'
+                        : 'bg-white hover:bg-gray-100'
+                    }
+                  `}
+                >
+                  <img
+                    src={pokemon.image_url}
+                    alt={pokemon.nombre}
+                    className='w-24 h-24 md:w-32 md:h-32 object-contain mb-2'
+                  />
 
-                <p className='text-center font-semibold text-gray-800'>
-                  {pokemon.nombre}
-                </p>
-              </li>
-            ))}
-        </ul>)
-      }
+                  <p className='text-center font-semibold text-gray-800'>
+                    {pokemon.nombre}
+                  </p>
+                </li>
+              ))}
+          </ul>)
+        }
+      </div>
     </div>
   )
 }
